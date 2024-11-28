@@ -5,10 +5,12 @@ public class Player_Controller : MonoBehaviour
     private Vector2 playerDirection;
     private Rigidbody2D playerRB;
     private float playerspeed = 1f;
+    private Animator PlayerAnimator;
 
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
+        PlayerAnimator = GetComponent<Animator>(); 
     }
 
     void Update()
