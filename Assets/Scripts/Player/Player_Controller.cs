@@ -7,13 +7,12 @@ public class Player_Controller : MonoBehaviour
     private float playerspeed = 1f;
     private Animator PlayerAnimator;
     private bool walking;
-    private bool Run;
     private bool FaceRight = true;
 
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
-        PlayerAnimator = GetComponent<Animator>();
+        PlayerAnimator = GetComponent<Animator>(); 
     }
 
     void Update()
