@@ -58,7 +58,7 @@ public class Player_Controller : MonoBehaviour
 
         //Correr
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && walking)
         {
             PlayerRun();
 
@@ -67,6 +67,8 @@ public class Player_Controller : MonoBehaviour
         {
             PlayerRun();
             playerspeed = 1f;
+
+            PlayerAnimator.SetBool("Walking", walking);
         }
 
     }
