@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Player_Controller : MonoBehaviour
@@ -8,11 +9,14 @@ public class Player_Controller : MonoBehaviour
     private Animator PlayerAnimator;
     private bool walking;
     private bool FaceRight = true;
+    private int PunchCount = 0;
+    private bool comboControl;
+    private float TimeCross = 1.5f;
 
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
-        PlayerAnimator = GetComponent<Animator>(); 
+        PlayerAnimator = GetComponent<Animator>();
     }
 
     void Update()
@@ -23,10 +27,33 @@ public class Player_Controller : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            //if (walking == false)
-            //{
-            PlayerPunch();
-            //}
+            if (PunchCount < 3)
+            {
+                PunchCount++;
+                PlayerPunch();
+
+                if (!comboControl)
+                {
+                    StartCoroutine(CrossController());
+                }
+
+            }
+            else if (PunchCount >= 3)
+            {
+                PlayerCross();
+            }
+
+            StopCoroutine(CrossController());
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            PlayerSpecial();
+        } 
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            PlayerDash();
         }
 
         //Correr
@@ -90,9 +117,35 @@ public class Player_Controller : MonoBehaviour
         PlayerAnimator.SetTrigger("Punch");
     }
 
+    void PlayerCross()
+    {
+        PlayerAnimator.SetTrigger("Cross");
+    }
+
+    void PlayerSpecial()
+    {
+        PlayerAnimator.SetTrigger("Special");
+    }
+
+    void PlayerDash()
+    {
+        PlayerAnimator.SetTrigger("Dash");
+    }
+
     void PlayerRun()
     {
         playerspeed += 0.40f;
         PlayerAnimator.SetTrigger("Run");
     }
+
+    IEnumerator CrossController()
+    {
+        comboControl = true;
+
+        yield return new WaitForSeconds(TimeCross);
+        PunchCount = 0;
+
+        comboControl = false;
+    }
+
 }
