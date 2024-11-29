@@ -92,7 +92,7 @@ public class Player_Controller : MonoBehaviour
 
     void PlayerRun()
     {
-        playerspeed += 0.25f;
+        playerspeed += 0.40f;
         PlayerAnimator.SetTrigger("Run");
     }
 }
