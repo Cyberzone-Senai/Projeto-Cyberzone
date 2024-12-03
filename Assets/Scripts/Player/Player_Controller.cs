@@ -47,13 +47,20 @@ public class Player_Controller : MonoBehaviour
 
         }
 
+        //Special
         if (Input.GetKeyDown(KeyCode.E))
         {
             PlayerSpecial();
         } 
-        if (Input.GetKeyDown(KeyCode.Q))
+
+        //Dash
+        if (Input.GetKeyDown(KeyCode.Q) )
         {
             PlayerDash();
+            playerspeed += 3f;
+        }else if (Input.GetKeyUp(KeyCode.Q) )
+        {
+            playerspeed -= 3f;
         }
 
         //Correr
