@@ -5,18 +5,25 @@ public class Player_Controller : MonoBehaviour
 {
     private Vector2 playerDirection;
     private Rigidbody2D playerRB;
-    private float playerspeed = 1f;
     private Animator PlayerAnimator;
+
+    //Movimentação
+    private float playerspeed = 1f;
+    private float currentSpeed;
     private bool walking;
     private bool FaceRight = true;
-    private int PunchCount = 0;
+
+    //Combate
+    private int punchCount = 0;
     private bool comboControl;
-    private float TimeCross = 1.5f;
+    private float TimeCross = 1.5f;   
 
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
         PlayerAnimator = GetComponent<Animator>();
+
+        currentSpeed = playerspeed;
     }
 
     void Update()
@@ -24,12 +31,12 @@ public class Player_Controller : MonoBehaviour
         playerMove();
         Updateanimator();
 
-
+        //Attack
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if (PunchCount < 3)
+            if (punchCount < 3)
             {
-                PunchCount++;
+                punchCount++;
                 PlayerPunch();
 
                 if (!comboControl)
@@ -38,7 +45,7 @@ public class Player_Controller : MonoBehaviour
                 }
 
             }
-            else if (PunchCount >= 3)
+            else if (punchCount >= 3)
             {
                 PlayerCross();
             }
@@ -51,18 +58,21 @@ public class Player_Controller : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             PlayerSpecial();
-        } 
-
-        //Dash
-        if (Input.GetKeyDown(KeyCode.Q) )
-        {
-            PlayerDash();
-            playerspeed += 3f;
-        }else if (Input.GetKeyUp(KeyCode.Q) )
-        {
-            playerspeed -= 3f;
         }
 
+        //Dash
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            PlayerDash();
+            currentSpeed += 3f;
+
+        }
+        else if (Input.GetKeyUp(KeyCode.Q))
+        {
+            currentSpeed = playerspeed;
+
+
+        }
         //Correr
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && walking)
@@ -73,7 +83,7 @@ public class Player_Controller : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             PlayerRun();
-            playerspeed = 1f;
+            currentSpeed = playerspeed;
 
             PlayerAnimator.SetBool("Walking", walking);
         }
@@ -82,6 +92,8 @@ public class Player_Controller : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        //Movimentação
         if (playerDirection.x != 0 || playerDirection.y != 0)
         {
             walking = true;
@@ -91,7 +103,7 @@ public class Player_Controller : MonoBehaviour
             walking = false;
         }
 
-        playerRB.MovePosition(playerRB.position + playerspeed * Time.fixedDeltaTime * playerDirection);
+        playerRB.MovePosition(playerRB.position + currentSpeed * Time.fixedDeltaTime * playerDirection);
     }
 
     void Updateanimator()
@@ -143,18 +155,25 @@ public class Player_Controller : MonoBehaviour
 
     void PlayerRun()
     {
-        playerspeed += 0.40f;
+        currentSpeed += 0.40f;
         PlayerAnimator.SetTrigger("Run");
+    }
+
+    void ZeroSpeed()
+    {
+        currentSpeed = 0;
+    }
+
+    void ResetSpeed()
+    {
+        currentSpeed = playerspeed;
     }
 
     IEnumerator CrossController()
     {
         comboControl = true;
-
         yield return new WaitForSeconds(TimeCross);
-        PunchCount = 0;
-
+        punchCount = 0;
         comboControl = false;
     }
-
 }
