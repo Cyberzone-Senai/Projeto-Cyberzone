@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player = GetComponent<Player_Controller>();
+        player = FindFirstObjectByType<Player_Controller>();
 
         playerHealthBar.maxValue = player.maxHealth;
 
