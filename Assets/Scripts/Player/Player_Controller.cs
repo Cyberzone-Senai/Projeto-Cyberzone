@@ -15,17 +15,18 @@ public class Player_Controller : MonoBehaviour
     //Combate
     private int punchCount = 0;
     private bool comboControl;
-    private float timeCross = 1.5f;
+    private float TimeCross = 1.5f;
 
     //vivo ou morto
     private bool isdead;
 
     //ataque e dano
-    private int maxHealth = 10;
-    private int currentHealth;
     private bool isTakeDamage;
 
-
+    //UI
+    public int maxHealth = 10;
+    public int currentHealth;
+    public Sprite playerImage;
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
@@ -110,6 +111,7 @@ public class Player_Controller : MonoBehaviour
         else
         {
             walking = false;
+
         }
 
         playerRB.MovePosition(playerRB.position + currentSpeed * Time.fixedDeltaTime * playerDirection);

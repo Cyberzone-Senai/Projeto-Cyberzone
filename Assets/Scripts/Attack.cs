@@ -20,6 +20,8 @@ public class Attack : MonoBehaviour
 
         //colisão inimigo
         Bot_Controller bot = collision.GetComponent<Bot_Controller>();
+        
+
 
         if (bot != null)
         {
