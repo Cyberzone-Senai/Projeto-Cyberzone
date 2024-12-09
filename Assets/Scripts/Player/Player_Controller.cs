@@ -16,8 +16,12 @@ public class Player_Controller : MonoBehaviour
     //Combate
     private int punchCount = 0;
     private bool comboControl;
-    private float TimeCross = 1.5f;   
+    private float TimeCross = 1.5f;
 
+    //UI
+    public int maxHealth = 10;
+    public int currentHealth;
+    public Sprite playerImage;
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
