@@ -182,7 +182,7 @@ public class Player_Controller : MonoBehaviour
     IEnumerator CrossController()
     {
         comboControl = true;
-        yield return new WaitForSeconds(timeCross);
+        yield return new WaitForSeconds(TimeCross);
         punchCount = 0;
         comboControl = false;
     }
