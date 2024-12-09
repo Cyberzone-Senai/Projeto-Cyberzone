@@ -82,6 +82,7 @@ public class Player_Controller : MonoBehaviour
         else
         {
             walking = false;
+
         }
 
         playerRB.MovePosition(playerRB.position + playerspeed * Time.fixedDeltaTime * playerDirection);
