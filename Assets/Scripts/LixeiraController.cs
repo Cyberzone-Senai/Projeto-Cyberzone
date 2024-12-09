@@ -33,7 +33,6 @@ public class LixeiraController : MonoBehaviour
             currentHealth -= damage;
 
             animator.SetTrigger("Lixeira_Quebrada");
-
         }
     }
 
