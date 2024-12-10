@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-
 public class Player_Controller : MonoBehaviour
 {
     private Vector2 playerDirection;
@@ -16,7 +15,18 @@ public class Player_Controller : MonoBehaviour
     //Combate
     private int punchCount = 0;
     private bool comboControl;
-    private float TimeCross = 1.5f;   
+    private float TimeCross = 1.5f;
+
+    //vivo ou morto
+    private bool isdead;
+
+    //ataque e dano
+    private bool isTakeDamage;
+
+    //UI
+    public int maxHealth = 10;
+    public int currentHealth;
+    public Sprite playerImage;
 
     void Start()
     {
@@ -24,6 +34,7 @@ public class Player_Controller : MonoBehaviour
         PlayerAnimator = GetComponent<Animator>();
 
         currentSpeed = playerspeed;
+        currentHealth = maxHealth;
     }
 
     void Update()
@@ -37,7 +48,7 @@ public class Player_Controller : MonoBehaviour
             if (punchCount < 3)
             {
                 punchCount++;
-                PlayerPunch();
+                PlayerAnimator.SetTrigger("Punch");
 
                 if (!comboControl)
                 {
@@ -47,7 +58,7 @@ public class Player_Controller : MonoBehaviour
             }
             else if (punchCount >= 3)
             {
-                PlayerCross();
+                PlayerAnimator.SetTrigger("Cross");
             }
 
             StopCoroutine(CrossController());
@@ -57,13 +68,13 @@ public class Player_Controller : MonoBehaviour
         //Special
         if (Input.GetKeyDown(KeyCode.E))
         {
-            PlayerSpecial();
+            PlayerAnimator.SetTrigger("Special");
         }
 
         //Dash
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            PlayerDash();
+            PlayerAnimator.SetTrigger("Dash");
             currentSpeed += 3f;
 
         }
@@ -101,6 +112,7 @@ public class Player_Controller : MonoBehaviour
         else
         {
             walking = false;
+
         }
 
         playerRB.MovePosition(playerRB.position + currentSpeed * Time.fixedDeltaTime * playerDirection);
@@ -115,13 +127,33 @@ public class Player_Controller : MonoBehaviour
     {
         playerDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        if (playerDirection.x > 0 && !FaceRight)
+            if (playerDirection.x > 0 && !FaceRight)
+            {
+                Flip();
+            }
+            else if (playerDirection.x < 0 && FaceRight)
+            {
+                Flip();
+            }
+        
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (!isdead)
         {
-            Flip();
-        }
-        else if (playerDirection.x < 0 && FaceRight)
-        {
-            Flip();
+            isTakeDamage = true;
+            currentHealth -= damage;
+
+            PlayerAnimator.SetTrigger("HitDamage");
+            FindFirstObjectByType<UIManager>().UpdatePlayerHealth(currentHealth);
+
+            if (currentHealth <= 0)
+            {
+                isdead = true;
+                ZeroSpeed();
+                PlayerAnimator.SetTrigger("Dead");            
+            }
         }
     }
 
@@ -131,26 +163,6 @@ public class Player_Controller : MonoBehaviour
 
         transform.Rotate(0, 180, 0);
 
-    }
-
-    void PlayerPunch()
-    {
-        PlayerAnimator.SetTrigger("Punch");
-    }
-
-    void PlayerCross()
-    {
-        PlayerAnimator.SetTrigger("Cross");
-    }
-
-    void PlayerSpecial()
-    {
-        PlayerAnimator.SetTrigger("Special");
-    }
-
-    void PlayerDash()
-    {
-        PlayerAnimator.SetTrigger("Dash");
     }
 
     void PlayerRun()
@@ -175,5 +187,10 @@ public class Player_Controller : MonoBehaviour
         yield return new WaitForSeconds(TimeCross);
         punchCount = 0;
         comboControl = false;
+    }
+
+    void DisablePlayer()
+    {
+        gameObject.SetActive(false);
     }
 }
