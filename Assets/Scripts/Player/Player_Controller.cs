@@ -27,6 +27,7 @@ public class Player_Controller : MonoBehaviour
     public int maxHealth = 10;
     public int currentHealth;
     public Sprite playerImage;
+
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
@@ -145,6 +146,7 @@ public class Player_Controller : MonoBehaviour
             currentHealth -= damage;
 
             PlayerAnimator.SetTrigger("HitDamage");
+            FindFirstObjectByType<UIManager>().UpdatePlayerHealth(currentHealth);
 
             if (currentHealth <= 0)
             {
@@ -185,5 +187,10 @@ public class Player_Controller : MonoBehaviour
         yield return new WaitForSeconds(TimeCross);
         punchCount = 0;
         comboControl = false;
+    }
+
+    void DisablePlayer()
+    {
+        gameObject.SetActive(false);
     }
 }
