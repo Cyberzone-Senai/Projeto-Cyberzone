@@ -96,15 +96,15 @@ public class Bot_Controller : MonoBehaviour
             Vector3 targetDistance = target.position - transform.position;
 
             horizontalForce = targetDistance.x / Mathf.Abs(targetDistance.x);
-            verticalForce = targetDistance.y / Mathf.Abs(targetDistance.y);
+            //verticalForce = targetDistance.y / Mathf.Abs(targetDistance.y);
 
             //entre 1 e 2 segundos será feita uma definição de direção vertical
-            //if (walkTimer >= UnityEngine.Random.Range(1f, 2f))
-            //{
-            //    verticalForce = UnityEngine.Random.Range(-1, 2);
+            if (walkTimer >= UnityEngine.Random.Range(1f, 2f))
+            {
+                verticalForce = UnityEngine.Random.Range(-1, 2);
 
-            //    walkTimer = 0;
-            //}
+                walkTimer = 0;
+            }
 
             //caso esteja perto do player, parar a movimentação
 
@@ -165,5 +165,10 @@ public class Bot_Controller : MonoBehaviour
     void ResetSpeed()
     {
         currentSpeed = enemySpeed;
+    }
+
+    public void DisableEnemy()
+    {
+        gameObject.SetActive(false);
     }
 }
