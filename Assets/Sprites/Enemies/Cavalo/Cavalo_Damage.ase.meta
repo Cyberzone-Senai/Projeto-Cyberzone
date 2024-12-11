@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d3ae7fd4e44ee774bbed9af570c75ed5
+guid: f0b8d305a16534b45b0bfd3a79c17b7b
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638695258858032025
+  platformSettingsDirtyTick: 0
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -122,7 +122,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: sword_astra
+  - name: Cavalo_Idle 1
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -132,9 +132,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 18
-      height: 17
-    spriteID: c2b54001f06bf1f4383ee89061e5aafb
+      width: 64
+      height: 52
+    spriteID: 11c993baf6231b840b5b43f37530083a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -146,21 +146,21 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1133992013
-    name: sword_astra
+    guid: 1900948550
+    name: Cavalo_Idle 1
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: sword_astra
+    - name: Cavalo_Damage
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
-        width: 18
-        height: 17
-      spriteId: c2b54001f06bf1f4383ee89061e5aafb
+        width: 64
+        height: 52
+      spriteId: 11c993baf6231b840b5b43f37530083a
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -176,31 +176,7 @@ ScriptedImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
-  - name: DefaultTexturePlatform
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 1
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
-  - name: Standalone
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 18, y: 17}
+  canvasSize: {x: 64, y: 64}
