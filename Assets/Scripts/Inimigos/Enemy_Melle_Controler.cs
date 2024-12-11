@@ -167,7 +167,7 @@ public class EnemyMeleeController : MonoBehaviour
                 // Pega o tempo atual e soma o attackRate, para definir a partir de quando o inimigo poderá atacar novamente
                 nextAttack = Time.time + attackRate;
 
-               ResetSpeed();
+                ResetSpeed();
             }
         }
 
