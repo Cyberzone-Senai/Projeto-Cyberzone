@@ -21,7 +21,7 @@ public class Attack : MonoBehaviour
         //colisão inimigo
         Bot_Controller bot = collision.GetComponent<Bot_Controller>();
         
-
+        EnemyMeleeController Cavalo = collision.GetComponent<EnemyMeleeController>();
 
         if (bot != null)
         {
@@ -31,6 +31,11 @@ public class Attack : MonoBehaviour
         if (player != null)
         {
             player.TakeDamage(damage);
+        }
+
+        if (Cavalo != null)
+        {
+            Cavalo.TakeDamage(damage);
         }
     }
 }
