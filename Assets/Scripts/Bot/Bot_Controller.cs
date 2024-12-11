@@ -18,7 +18,8 @@ public class Bot_Controller : MonoBehaviour
     public bool previousDirectionRight;
 
     //movimentação
-    private bool walk;
+    // protected serve para torna as variaveis publicas, mas somente para classes
+    protected bool walk;
     private float walkTimer;
     private float enemySpeed = 0.4f;
     private float currentSpeed;
@@ -30,13 +31,14 @@ public class Bot_Controller : MonoBehaviour
     private float nextAttack;
 
     //mecanica de dano
+    public int damage;
     public int maxHealth = 5;
     public int currentHealth;
     public float staggerTime = 0.5f;
     private int damageTimer;
     public bool isTakeDamage;
     
-    void Start()
+    public void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -47,7 +49,7 @@ public class Bot_Controller : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    void Update()
+    public void Update()
     {
         //virar o inimigo
         if (target.position.x < transform.position.x)
@@ -134,7 +136,7 @@ public class Bot_Controller : MonoBehaviour
         }
     }
 
-    void UpdateAnimator()
+    public void UpdateAnimator()
     {
         animator.SetBool("Walk", walk);
     }
@@ -157,12 +159,12 @@ public class Bot_Controller : MonoBehaviour
         }
     }
 
-    void ZeroSpeed()
+    protected void ZeroSpeed()
     {
         currentSpeed = 0;
     }
 
-    void ResetSpeed()
+    protected void ResetSpeed()
     {
         currentSpeed = enemySpeed;
     }
