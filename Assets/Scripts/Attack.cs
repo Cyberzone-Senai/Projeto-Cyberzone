@@ -23,6 +23,8 @@ public class Attack : MonoBehaviour
         
         EnemyMeleeController Cavalo = collision.GetComponent<EnemyMeleeController>();
 
+        LixeiraController lixeira = collision.GetComponent<LixeiraController>();
+
         if (bot != null)
         {
             bot.TakeDamage(damage);
@@ -36,6 +38,11 @@ public class Attack : MonoBehaviour
         if (Cavalo != null)
         {
             Cavalo.TakeDamage(damage);
+        }
+
+        if (lixeira != null)
+        {
+            lixeira.TakeDamage(damage);
         }
     }
 }
