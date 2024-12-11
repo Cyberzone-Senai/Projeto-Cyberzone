@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 public class Player_Controller : MonoBehaviour
 {
@@ -76,7 +77,6 @@ public class Player_Controller : MonoBehaviour
         {
             PlayerAnimator.SetTrigger("Dash");
             currentSpeed += 3f;
-
         }
         else if (Input.GetKeyUp(KeyCode.Q))
         {
@@ -154,6 +154,29 @@ public class Player_Controller : MonoBehaviour
                 ZeroSpeed();
                 PlayerAnimator.SetTrigger("Dead");            
             }
+        }
+    }
+
+    // teleport
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Teleport tp = collision.gameObject.GetComponent<Teleport>();
+        Item item = collision.gameObject.GetComponent<Item>();
+
+        if (item != null)
+        {
+            currentHealth += 5;
+
+            item.gameObject.SetActive(false);
+            FindFirstObjectByType<UIManager>().UpdatePlayerHealth(currentHealth);
+
+        }
+
+        if (tp != null)
+        {
+            float distance = 2.3f;
+            transform.position = new Vector2(transform.position.x + distance, transform.position.y);
+           
         }
     }
 

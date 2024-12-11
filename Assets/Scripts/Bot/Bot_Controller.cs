@@ -20,7 +20,7 @@ public class Bot_Controller : MonoBehaviour
     //movimentação
     private bool walk;
     private float walkTimer;
-    private float enemySpeed = 0.6f;
+    private float enemySpeed = 0.4f;
     private float currentSpeed;
     private float horizontalForce;
     private float verticalForce;
