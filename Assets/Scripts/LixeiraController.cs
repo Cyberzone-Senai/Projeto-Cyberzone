@@ -25,7 +25,7 @@ public class LixeiraController : MonoBehaviour
         
     }
 
-    public void TakeDamage (int  damage)
+    public void TakeDamage (int damage)
     {
         if (!isDead)
         {
@@ -36,7 +36,7 @@ public class LixeiraController : MonoBehaviour
         }
     }
 
-    public void DisableEnemy()
+    public void DisableLixeira()
     {
         this.gameObject.SetActive(false);
     }

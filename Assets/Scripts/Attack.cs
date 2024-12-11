@@ -20,6 +20,8 @@ public class Attack : MonoBehaviour
 
         //colisão inimigo
         Bot_Controller bot = collision.GetComponent<Bot_Controller>();
+
+        LixeiraController lixeira = collision.GetComponent<LixeiraController>();
         
 
 
@@ -31,6 +33,11 @@ public class Attack : MonoBehaviour
         if (player != null)
         {
             player.TakeDamage(damage);
+        }
+
+        if(lixeira != null)
+        {
+            lixeira.TakeDamage(damage);
         }
     }
 }
