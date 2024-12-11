@@ -29,6 +29,10 @@ public class Player_Controller : MonoBehaviour
     public int currentHealth;
     public Sprite playerImage;
 
+    public int espada;
+
+    private Collider2D itemPerto;
+
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
@@ -97,6 +101,19 @@ public class Player_Controller : MonoBehaviour
             currentSpeed = playerspeed;
 
             PlayerAnimator.SetBool("Walking", walking);
+        }
+
+        // Espada pegável com um trigger
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            //procura o item em gameobject perto e o destrói
+            if (itemPerto)
+            {
+                Destroy(itemPerto.gameObject);
+                
+            }
+
+
         }
 
     }
@@ -178,6 +195,8 @@ public class Player_Controller : MonoBehaviour
             transform.position = new Vector2(transform.position.x + distance, transform.position.y);
            
         }
+
+        itemPerto = collision;
     }
 
     void Flip()
@@ -216,4 +235,12 @@ public class Player_Controller : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
+    // mostra que o itemPerto é aquele que tem a colisão junto ao player
+ 
+
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    itemPerto = false;
+    //}
 }
