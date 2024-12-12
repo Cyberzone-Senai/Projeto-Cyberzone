@@ -235,12 +235,4 @@ public class Player_Controller : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-
-    // mostra que o itemPerto é aquele que tem a colisão junto ao player
- 
-
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    itemPerto = false;
-    //}
 }

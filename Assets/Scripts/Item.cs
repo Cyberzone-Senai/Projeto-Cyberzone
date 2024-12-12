@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+
+    private Rigidbody2D rb;
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
 
     }
 
@@ -13,5 +15,10 @@ public class Item : MonoBehaviour
         
     }
 
-   
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+    }
+
+
 }
