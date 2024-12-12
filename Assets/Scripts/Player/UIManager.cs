@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
 
         playerHealthBar.value = playerHealthBar.maxValue;
 
-        playerImage.sprite = player.playerImage;
+        //playerImage.sprite = player.playerImage;
     }
 
     // Update is called once per frame
