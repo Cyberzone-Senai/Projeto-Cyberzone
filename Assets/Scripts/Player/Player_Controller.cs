@@ -11,12 +11,17 @@ public class Player_Controller : MonoBehaviour
     private float playerspeed = 1f;
     private float currentSpeed;
     private bool walking;
-    private bool FaceRight = true;
+    public bool FaceRight = true;
 
     //Combate
     private int punchCount = 0;
     private bool comboControl;
-    private float TimeCross = 1.5f;
+    private float timeCross = 1.5f;
+
+    //Ataque especial
+
+    public Special specialPrefab;
+    public Transform launchOffSet;
 
     //vivo ou morto
     private bool isdead;
@@ -50,6 +55,8 @@ public class Player_Controller : MonoBehaviour
         //Attack
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+          
+
             if (punchCount < 3)
             {
                 punchCount++;
@@ -65,7 +72,7 @@ public class Player_Controller : MonoBehaviour
             {
                 PlayerAnimator.SetTrigger("Cross");
             }
-
+          
             StopCoroutine(CrossController());
 
         }
@@ -73,6 +80,8 @@ public class Player_Controller : MonoBehaviour
         //Special
         if (Input.GetKeyDown(KeyCode.E))
         {
+            Instantiate(specialPrefab, launchOffSet.position ,transform.rotation);
+
             PlayerAnimator.SetTrigger("Special");
         }
 
@@ -226,7 +235,7 @@ public class Player_Controller : MonoBehaviour
     IEnumerator CrossController()
     {
         comboControl = true;
-        yield return new WaitForSeconds(TimeCross);
+        yield return new WaitForSeconds(timeCross);
         punchCount = 0;
         comboControl = false;
     }
