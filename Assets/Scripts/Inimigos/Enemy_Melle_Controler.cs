@@ -190,7 +190,7 @@ public class EnemyMeleeController : MonoBehaviour
             animator.SetTrigger("HitDamage");
 
             //Atualiza a UI do inimigo
-            //FindAnyObjectByType<UImanger>().UpdateenemyUI(maxHealth, currentHealth, EnemyImage);
+            FindAnyObjectByType<UIManager>().UpdateenemyUI(maxHealth, currentHealth, EnemyImage);
 
             if (currentHealth <= 0)
             {
