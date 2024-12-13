@@ -78,12 +78,12 @@ public class Player_Controller : MonoBehaviour
         }
 
         //Special
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Instantiate(specialPrefab, launchOffSet.position ,transform.rotation);
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    Instantiate(specialPrefab, launchOffSet.position ,transform.rotation);
 
-            PlayerAnimator.SetTrigger("Special");
-        }
+        //    PlayerAnimator.SetTrigger("Special");
+        //}
 
         //Dash
         if (Input.GetKeyDown(KeyCode.Q))
@@ -121,10 +121,7 @@ public class Player_Controller : MonoBehaviour
                 Destroy(itemPerto.gameObject);
                 
             }
-
-
         }
-
     }
 
     private void FixedUpdate()
