@@ -15,11 +15,13 @@ public class Attack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //colisão player
+        //colisï¿½o player
         Player_Controller player = collision.GetComponent<Player_Controller>();
 
-        //colisão inimigo
+        //colisï¿½o inimigo
         Bot_Controller bot = collision.GetComponent<Bot_Controller>();
+
+        LixeiraController lixeira = collision.GetComponent<LixeiraController>();
         
         EnemyMeleeController Cavalo = collision.GetComponent<EnemyMeleeController>();
 
@@ -35,6 +37,10 @@ public class Attack : MonoBehaviour
             player.TakeDamage(damage);
         }
 
+        if(lixeira != null)
+        {
+            lixeira.TakeDamage(damage);
+        }
         if (Cavalo != null)
         {
             Cavalo.TakeDamage(damage);

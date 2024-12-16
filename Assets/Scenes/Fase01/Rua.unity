@@ -153,6 +153,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealthBar: {fileID: 1292729535}
   playerImage: {fileID: 189792507}
+  enemyUI: {fileID: 0}
+  enemyHealthBar: {fileID: 0}
+  enemyUITimer: 4
 --- !u!114 &71485791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,7 +254,7 @@ GameObject:
   - component: {fileID: 125031425}
   - component: {fileID: 125031424}
   - component: {fileID: 125031423}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -310,7 +313,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -368,6 +371,7 @@ MonoBehaviour:
   maxHealth: 10
   currentHealth: 0
   playerImage: {fileID: -6606324946719568701, guid: 09bbe8d3d437b5f4fab97c93d5b2ba16, type: 3}
+  espada: 0
 --- !u!212 &125031427
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -432,7 +436,7 @@ Transform:
   m_GameObject: {fileID: 125031422}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.57, y: -0.54, z: 0}
+  m_LocalPosition: {x: -1.836, y: -0.707, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -528,7 +532,8 @@ GameObject:
   - component: {fileID: 203358005}
   - component: {fileID: 203358008}
   - component: {fileID: 203358009}
-  m_Layer: 0
+  - component: {fileID: 203358010}
+  m_Layer: 10
   m_Name: Lixeira
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -544,7 +549,7 @@ Transform:
   m_GameObject: {fileID: 203358003}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.07445407, y: 0.14116493, z: 0.0030198686}
+  m_LocalPosition: {x: 1.274, y: 0.316, z: 0.0030198686}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -604,7 +609,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!95 &203358006
 Animator:
   serializedVersion: 7
@@ -661,7 +666,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.049999997, y: 0.03760723}
+  m_Offset: {x: -0.049999997, y: 0.04873563}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.72727275, y: 0}
@@ -671,7 +676,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.22, y: 0.07521446}
+  m_Size: {x: 0.22, y: 0.09747126}
   m_EdgeRadius: 0
 --- !u!50 &203358009
 Rigidbody2D:
@@ -699,7 +704,23 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
+--- !u!114 &203358010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203358003}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bce5d0eddf65cf46b818f102bf2007a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDead: 0
+  maxHealth: 1
+  currentHealth: 0
+  isTakingDamage: 0
 --- !u!1 &208264722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,7 +1142,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.009843111, y: -0.00083607435, z: -5}
+  m_LocalPosition: {x: 0.18954444, y: -0.00083607435, z: -5}
   m_LocalScale: {x: 1.049801, y: 1.049801, z: 1.049801}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1281,7 +1302,7 @@ Transform:
   m_GameObject: {fileID: 591506716}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.57, y: -0.54, z: -5}
+  m_LocalPosition: {x: -1.836, y: -0.707, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1637,8 +1658,8 @@ GameObject:
   - component: {fileID: 1007677473}
   - component: {fileID: 1007677475}
   - component: {fileID: 1007677474}
-  m_Layer: 5
-  m_Name: Image
+  m_Layer: 9
+  m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
