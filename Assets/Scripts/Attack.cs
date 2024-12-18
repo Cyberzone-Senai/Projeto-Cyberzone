@@ -25,7 +25,6 @@ public class Attack : MonoBehaviour
         
         EnemyMeleeController Cavalo = collision.GetComponent<EnemyMeleeController>();
 
-        LixeiraController lixeira = collision.GetComponent<LixeiraController>();
 
         if (bot != null)
         {

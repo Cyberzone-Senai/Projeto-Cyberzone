@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -42,6 +43,8 @@ public class EnemyMeleeController : MonoBehaviour
     public bool isTakingDamage;
 
     public Sprite EnemyImage;
+
+    public GameObject projectile;
 
     void Start()
     {
@@ -214,7 +217,25 @@ public class EnemyMeleeController : MonoBehaviour
     {
         currentSpeed = enemySpeed;
     }
+    public void shoot()
+    {
+        Vector2  spawposition = new Vector2(this.transform.position.x, this.transform.position.y - 0.2f);
 
+        GameObject shootObject = Instantiate(projectile, spawposition, Quaternion.identity);
+
+        shootObject.SetActive(true);
+
+        var shootPhysics = shootObject.GetComponent<Rigidbody2D>();
+
+        if (facingRight = true)
+        {
+            shootPhysics.AddForceX(80f);
+        }
+        else
+        {
+            shootPhysics.AddForceX(-80f);
+        }
+    }
     public void DisableEnemy()
     {
         // Desabilita este inimigo

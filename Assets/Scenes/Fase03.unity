@@ -1422,7 +1422,7 @@ GameObject:
   - component: {fileID: 1841291671}
   - component: {fileID: 1841291672}
   m_Layer: 0
-  m_Name: Confiner
+  m_Name: Confiners
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
